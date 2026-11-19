@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
 
-import {Test, console} from 'forge-std/Test.sol';
+import {Test, console} from "forge-std/Test.sol";
 import {FundMe} from "../../src/FundMe.sol";
 import {DeployFundMe} from "../../script/DeployFundMe.s.sol";
 
@@ -40,7 +40,7 @@ contract FundMeTest is Test {
 
     function testFundUpdatesFundedDataStructure() public {
         vm.prank(USER); //THE NEXT TXT will be sent by user
-        fundMe.fund{value: SEND_VALUE}(); 
+        fundMe.fund{value: SEND_VALUE}();
 
         uint256 amountFunded = fundMe.getAddressToAmountFunded(USER);
         assertEq(amountFunded, SEND_VALUE);
@@ -82,7 +82,7 @@ contract FundMeTest is Test {
     function testWithdrawFromMultipleFunders() public funded {
         uint160 numberOfFunders = 10;
         uint160 startingFunderIndex = 2;
-        for(uint160 i = startingFunderIndex; i < numberOfFunders; i++) {
+        for (uint160 i = startingFunderIndex; i < numberOfFunders; i++) {
             hoax(address(1), SEND_VALUE);
             fundMe.fund{value: SEND_VALUE}();
         }
@@ -101,7 +101,7 @@ contract FundMeTest is Test {
     function testWithdrawFromMultipleFundersCheaper() public funded {
         uint160 numberOfFunders = 10;
         uint160 startingFunderIndex = 2;
-        for(uint160 i = startingFunderIndex; i < numberOfFunders; i++) {
+        for (uint160 i = startingFunderIndex; i < numberOfFunders; i++) {
             hoax(address(1), SEND_VALUE);
             fundMe.fund{value: SEND_VALUE}();
         }
